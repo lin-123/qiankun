@@ -18,6 +18,8 @@ module.exports = {
   },
   output: {
     publicPath: '/',
+    library: name,
+    libraryTarget: 'umd'
   },
   mode: 'development',
   resolve: {

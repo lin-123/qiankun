@@ -27,6 +27,27 @@
     </div>
   </div>
 
+  <!-- 如果引用如下代码块， 会导致乾坤加载不出来 -->
+  <!-- debug start -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/system.min.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/systemjs@0.21.6/dist/system-production.src.js"></script>
+  <script>
+    var hwp = '<%= JSON.stringify(htmlWebpackPlugin.files) %>'.replace(/\\/g, '/');
+    var files = JSON.parse(hwp);
+    var jsFiles = files.js;
+    var _jsFiles = []
+    var main = null;
+    for (var i = 0, len = jsFiles.length; i < len; i++) {
+      if (/\/main\.js$/.test(jsFiles[i])) {
+        main = jsFiles[i];
+      }
+      else if (!/hot-update\.js$/.test(jsFiles[i])) {
+        _jsFiles.push(jsFiles[i]);
+      }
+    }
+    System.import(main);
+  </script>
+  <!-- debug end -->
   <script>
     function push(subapp) { history.pushState(null, subapp, subapp) }
   </script>

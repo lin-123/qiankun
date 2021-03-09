@@ -16,7 +16,7 @@ module.exports = {
   },
   output: {
     library: `${name}-[name]`,
-    libraryTarget: 'umd',
+    libraryTarget: 'window',
     jsonpFunction: `webpackJsonp_${name}`,
   },
   mode: 'development',
